@@ -1,11 +1,14 @@
 import{test, expect} from '@playwright/test';
-//Using Array to include all the 3 combination of negative scenarios in one array 
+//Using Array to include all the 6 combination of negative scenarios in one array 
 //and mentioning scenario name with the valid invalid combination to get the report 
 //which actually include all the negative test case combination for login
 const invalidCredentials = [
   { uid: 'invalid123', pwd: 'invalid123', scenario: 'TC002 - Invalid UserID and Invalid Password' },
   { uid: process.env.GURU99_USERNAME, pwd: 'wrongpass', scenario: 'TC003 - Valid UserID and Invalid Password' },
   { uid: 'invaliduser', pwd: process.env.GURU99_PASSWORD, scenario: 'TC004 - Invalid UserID and Valid Password' },
+  { uid: process.env.GURU99_USERNAME, pwd: '', scenario: 'TC005 - Valid UserID and Blank Password'},
+  { uid: '', pwd: process.env.GURU99_PASSWORD, scenario: 'TC006 - Blank UserID and Valid Password'},
+  { uid: '', pwd: '', scenario: 'TC007 - Blank UserID and Blank Password'},
 ];
 //creating Regression suite
 test.describe('Login Module - Regression', () => {

@@ -35,6 +35,9 @@ as I learn.
 | TC002 | Login | Invalid UserID and Invalid Password | Regression | Pass |
 | TC003 | Login | Valid UserID and Invalid Password | Regression | Pass |
 | TC004 | Login | Invalid UserID and Valid Password | Regression | Pass |
+| TC005 | Login | Valid UserID and Blank Password | Edge | Pass |
+| TC006 | Login | Blank UserID and Valid Password | Edge | Pass |
+| TC007 | Login | Blank UserID and Blank Password | Edge | Pass |
 
 ## Connect With Me
 LinkedIn: https://www.linkedin.com/in/rajveer-saxena-8119a7152
