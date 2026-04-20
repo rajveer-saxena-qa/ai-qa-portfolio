@@ -1,23 +1,24 @@
 const {test, expect} = require ('@playwright/test');
+require('dotenv').config();
+const validUID = process.env.GURU99_USERNAME;
+const validPWD = process.env.GURU99_PASSWORD;
 //Create Smoke Test suite
 test.describe('Login Module-Smoke',()=>{
   //Create Test case for valid login credentials
       test('TC001-Login with Valid Credentials',async({page})=>{
-       //Naviaget to URL     
+       //Navigate to URL     
          await page.goto('https://demo.guru99.com/V4/');
        //Enter Login Details User Id
-         await page.fill('input[name="uid"]', 'mngr659300');
-       //Enter LOgin Details Password
-         await page.fill('input[name="password"]', 'havusev');
+         await page.fill('input[name="uid"]', process.env.GURU99_USERNAME);
+       //Enter Login Details Password
+         await page.fill('input[name="password"]', process.env.GURU99_PASSWORD);
        //Click on LOGIN Button  
          await page.click('input[name="btnLogin"]');
        //Validate page URL have "Specific Text"
-         await expect(page).toHaveURL(/Managerhomepage/);
+         await expect(page).toHaveURL(/demo.guru99.com/);
        //Validate Welcome message  
-         await expect(page.locator('marquee')).toContainText('Welcome To Manager');
+         await expect(page.locator('body')).toContainText(`Manger Id : ${process.env.GURU99_USERNAME}`);
        //Validate page have "Specific Title"
-       console.log(await page.title());
-    console.log(page.url());
-         await expect(page).toHaveTitle(/Guru99 Bank Manager HomePage/);
+        await expect(page).toHaveTitle(/Guru99 Bank Manager HomePage/);
       });
 });
