@@ -1,4 +1,5 @@
 import{test, expect} from '@playwright/test';
+import { login } from '../../utils/loginHelper';
 //Using Array to include all the 6 combination of negative scenarios in one array 
 //and mentioning scenario name with the valid invalid combination to get the report 
 //which actually include all the negative test case combination for login
@@ -16,16 +17,10 @@ test.describe('Login Module - Regression', () => {
   invalidCredentials.forEach(({ uid, pwd, scenario }) => {
     //Create test case for all the three negative cases with scenario name
     test(`${scenario}`, async ({ page }) => {
-      // Navigate to URL
-      await page.goto('https://demo.guru99.com/V4/');
-      //Enter UID
-      await page.fill('input[name="uid"]', uid);
-      //Enter Password
-      await page.fill('input[name="password"]', pwd);
       //Click Login and wait for alert popup 
       const [dialog] = await Promise.all([
       page.waitForEvent('dialog'),
-      page.click('input[name="btnLogin"]'),
+      await login(page,uid,pwd),
       ]);
       //Validate error message in popup
       expect(dialog.message()).toContain('User or Password is not valid');
