@@ -1,9 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { login } from '../../utils/loginHelper.js';
+//Importing Node.js file system to read customerData.json
 import { readFileSync } from 'fs';
-//Read latest Customer ID from customerData.json for TC019
+//Fetching latest Customer ID from customerData.json for TC019 valid customer scenario
 const customerData = JSON.parse(readFileSync('testdata/customerData.json', 'utf8'));
 const latestCustomerId = customerData[customerData.length - 1].customerId;
+//Array holding all negative and edge test data for Customer ID and deposit field validation
 const invalidAccountData = [
   {
     scenario: 'TC017 - Blank Customer ID and Blank Initial Deposit',
@@ -37,8 +39,11 @@ const invalidAccountData = [
     expectedErrors: ['Special characters are not allowed']
   },
  ];
+//Grouping all negative and edge test cases under New Account Module Regression suite
 test.describe('New Account Module - Regression', () => {
+  //Looping through invalidAccountData array to create separate test case for each negative and edge scenario
   invalidAccountData.forEach(({ scenario, customerId, accountType, deposit, expectedErrors }) => {
+  //Test case name dynamically set from scenario field in array  
     test(`${scenario}`, async ({ page }) => {
       test.setTimeout(120000);
       //Login and navigate to New Account page

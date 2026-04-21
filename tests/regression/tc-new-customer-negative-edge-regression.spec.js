@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { login } from '../../utils/loginHelper.js';
-    const invalidCustomerData = [
+//Using array to store all negative and edge test data combinations   
+const invalidCustomerData = [
+    //TC014 covers all mandatory field blank validation
         {
     scenario: 'TC014 - Submit with all blank fields',
         name: '', dob: '', address: '', city: '',
@@ -12,9 +14,10 @@ import { login } from '../../utils/loginHelper.js';
                          'Mobile no must not be blank', 'Email-ID must not be blank',
                          'Password must not be blank']
         },
+    //TC015 covers Invalid error messages for every field except date.
         {
     scenario: 'TC015 - Invalid email format, Alphabets in PIN and Mobile and Numbers in City and State',
-        name: 'TestUser',
+        name: '1TestUser',
         dob: '1990-01-01',
         address: '123 Test Street',
         city: '12345',
@@ -25,6 +28,7 @@ import { login } from '../../utils/loginHelper.js';
         password: 'Password@1',
         expectedErrors: ['Numbers are not allowed', 'Characters are not allowed', 'Email-ID is not valid']
         },
+    // cover error messages for special chracter in every field except date    
         {
     scenario: 'TC016 - Special characters in Name City State PIN Mobile',
         name: '@#$%^&',
@@ -39,10 +43,14 @@ import { login } from '../../utils/loginHelper.js';
         expectedErrors: ['Special characters are not allowed']
         },
         ];
-     test.describe('New Customer Module - Regression', () => {
-     invalidCustomerData.forEach(({ scenario, name, dob, address, city, state, pin, mobile, email, password, expectedErrors }) => {
-     test(`${scenario}`, async ({ page }) => {
-     test.setTimeout(120000);
+     //Grouping all negative and edge test cases under New Customer Module Regression suite
+        test.describe('New Customer Module - Regression', () => {
+     //Looping through invalidCustomerData array to create separate test case for each negative and edge scenario
+        invalidCustomerData.forEach(({ scenario, name, dob, address, city, state, pin, mobile, email, password, expectedErrors }) => {
+     //Test case name dynamically set from scenario field in array
+        test(`${scenario}`, async ({ page }) => {
+     //Extended timout for slow website loading
+        test.setTimeout(120000);
       //Login and navigate to New Customer page
       await login(page);
       await page.click('text=New Customer');

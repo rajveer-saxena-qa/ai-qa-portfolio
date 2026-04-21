@@ -4,7 +4,7 @@ import { login } from '../../utils/loginHelper.js';
 const validCustomers = [
   {
     scenario: 'TC010 - Add new customer with Male gender',
-    name: `TestMaleUser`,
+    name: ``,
     gender: 'm',
     dob: '1990-01-01',
     address: '123 Test Street',
@@ -17,7 +17,7 @@ const validCustomers = [
   },
   {
     scenario: 'TC011 - Add new customer with Female gender',
-    name: `TestFemaleUser`,
+    name: ``,
     gender: 'f',
     dob: '1990-02-13',
     address: '123 Test Street',
@@ -37,8 +37,11 @@ test.describe('New Customer Module - Smoke', () => {
      //Login and navigate to New Customer page
       await login(page);
       await page.click('text=New Customer');
-      //Fill Customer Name
-      await page.fill('input[name="name"]', name);
+      //Filling unique Customer Name with letters only by checking gender male prefix for male and female prefix for female
+      const uniqueName = gender === 'm' 
+      ? `Male${Math.random().toString(36).slice(2,6).replace(/\d/g,'x')}`
+      : `Female${Math.random().toString(36).slice(2,6).replace(/\d/g,'x')}`;
+      await page.fill('input[name="name"]', uniqueName);
       //Select Gender
       await page.locator(`input[name="rad1"][value="${gender}"]`).click();
       //Fill Date of Birth using evaluate to bypass calendar picker
