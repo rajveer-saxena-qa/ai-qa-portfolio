@@ -2,7 +2,7 @@
 
 - [Test Flow Diagram](https://rajveer-saxena-qa.github.io/playwright-bfsi-automation/test-flow-diagram.html)
 
-# AI QA Portfolio - Rajveer Saxena
+# Playwright BFSI Automation - Rajveer Saxena
 
 Hi I am Rajveer Saxena, a QA Professional with 12 plus years of experience 
 in BFSI domain currently working as Test Manager at Coforge Technologies.
@@ -11,9 +11,6 @@ I built this portfolio to learn Playwright the practical way by automating
 a real banking application. After years of manual and API testing in banking 
 projects I wanted to add modern automation skills to my profile and document 
 that journey here.
-
-This is a work in progress and I will keep adding more test cases and modules 
-as I learn.
 
 ## Tech Stack
 - Playwright with JavaScript
@@ -24,7 +21,7 @@ as I learn.
 ## Test Coverage
 - Smoke Testing
 - Regression Testing
-- Sanity Testing (in progress)
+- Sanity Testing
 
 ## Test Approach
 - Positive Negative and Edge case scenarios
@@ -55,10 +52,13 @@ as I learn.
 | TC018 | New Account | Invalid Customer ID | Regression | Pass |
 | TC019 | New Account | Below minimum deposit | Regression | Pass |
 | TC020 | New Account | Special characters in Customer ID and Deposit | Regression | Pass |
+| TC021 | Edit Customer | Edit customer city and state with valid Customer ID | Smoke | Pass |
+| TC022 | Edit Customer | Blank Character and Special characters in Customer ID | Regression | Pass |
 | TC023 | Withdrawal | Withdrawal with valid Account Number and Amount | Smoke | Pass |
 | TC024 | Withdrawal | Blank Special characters and Alphabets in Account Number and Amount | Regression | Pass |
 | TC025 | Fund Transfer | Fund Transfer with valid Payer and Payee Account | Smoke | Pass |
 | TC026 | Fund Transfer | Blank Special characters and Alphabets in Fund Transfer fields | Regression | Pass |
 | TC027 | Logout | Logout navigates to login page | Smoke | Pass |
+
 ## Connect With Me
 LinkedIn: https://www.linkedin.com/in/rajveer-saxena-8119a7152
