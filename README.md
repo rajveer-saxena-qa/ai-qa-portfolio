@@ -1,6 +1,6 @@
 ## 🌐 Live Portfolio
 
-- [Test Flow Diagram](https://rajveer-saxena-qa.github.io/ai-qa-portfolio/test-flow-diagram.html)
+- [Test Flow Diagram](https://rajveer-saxena-qa.github.io/playwright-bfsi-automation/test-flow-diagram.html)
 
 # AI QA Portfolio - Rajveer Saxena
 
